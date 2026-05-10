@@ -8,7 +8,7 @@
     --accent-hover: #3d5a73;
     --border: #e8e8e4;
     --surface: #f5f4f0;
-    --max-width: 840px;
+    --max-width: 1400px;
 }
 
 *,
@@ -53,7 +53,7 @@ body::after {
 main {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 4rem;
 }
 
 h1,
@@ -65,16 +65,16 @@ h3 {
 }
 
 h1 {
-    font-size: clamp(2.75rem, 8vw, 4rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
+    font-size: clamp(4rem, 9vw, 7rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
 }
 
 h2 {
-    font-size: clamp(1.625rem, 4vw, 2.25rem);
-    line-height: 1.25;
-    margin-bottom: 2rem;
+    font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 3rem;
 }
 
 .section-label {
@@ -88,20 +88,20 @@ h2 {
 }
 
 #hero {
-    min-height: 85vh;
+    min-height: 65vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2.5rem;
 }
 
 #main-nav {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
+    gap: 1rem;
+    font-size: 0.9375rem;
     font-weight: 500;
-    padding-top: 1.25rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--border);
 }
 
@@ -141,27 +141,34 @@ h2 {
 }
 
 section {
-    margin-bottom: 8rem;
+    margin-bottom: 10rem;
 }
 
-section p {
-    margin-bottom: 1.25rem;
-    max-width: 600px;
-}
-
-section p:last-child {
-    margin-bottom: 0;
-}
-
-.lab-grid {
+/* About — two-column */
+#about {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem 5rem;
+}
+
+#about h2 {
+    grid-column: 1 / -1;
+}
+
+#about p {
+    font-size: 1.125rem;
+}
+
+/* Lab — three-column */
+.lab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
 }
 
 .lab-card {
     border: 1px solid var(--border);
-    padding: 2rem;
+    padding: 2.25rem;
     background: var(--bg);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -171,15 +178,9 @@ section p:last-child {
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
-.lab-card:first-child {
-    grid-column: 1 / -1;
-}
-
 .lab-card p {
     font-size: 1rem;
     line-height: 1.7;
-    color: var(--text);
-    margin-bottom: 0;
 }
 
 .badge {
@@ -193,12 +194,15 @@ section p:last-child {
     margin-bottom: 0.75rem;
 }
 
-.work-entry {
-    margin-bottom: 2.5rem;
+/* Work — two-column */
+#work {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 5rem;
 }
 
-.work-entry:last-child {
-    margin-bottom: 0;
+#work h2 {
+    grid-column: 1 / -1;
 }
 
 .work-entry h3 {
@@ -214,16 +218,16 @@ section p:last-child {
     color: var(--text-muted);
 }
 
-.work-entry p {
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 540px;
+/* Notes */
+#notes p {
+    max-width: 720px;
 }
 
+/* Footer */
 footer {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 2rem 1.5rem 3rem;
+    padding: 2rem 4rem 4rem;
     border-top: 1px solid var(--border);
 }
 
@@ -263,6 +267,7 @@ footer {
     user-select: none;
 }
 
+/* Reveal animations */
 .js-enabled header,
 .js-enabled section,
 .js-enabled footer {
@@ -279,74 +284,109 @@ footer {
     transform: translateY(0);
 }
 
+/* Sticky nav */
 body.scrolled #main-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 0.875rem 2rem;
+    padding: 1rem 4rem;
     background: rgba(250, 250, 248, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-top: none;
     border-bottom: 1px solid var(--border);
     justify-content: center;
-    font-size: 0.8125rem;
+    font-size: 0.9375rem;
 }
 
 body.scrolled #main-nav a::after {
     display: none;
 }
 
-@media (max-width: 640px) {
-    body {
-        font-size: 1rem;
+/* Responsive */
+@media (max-width: 900px) {
+    main {
+        padding: 0 2rem;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    h2 {
+        font-size: 1.625rem;
+        margin-bottom: 2rem;
+    }
+
+    #hero {
+        min-height: 55vh;
+    }
+
+    #about {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .lab-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #work {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    section {
+        margin-bottom: 6rem;
+    }
+
+    #notes p {
+        max-width: none;
+    }
+
+    footer {
+        padding: 2rem 2rem 3rem;
+    }
+
+    body.scrolled #main-nav {
+        padding: 0.875rem 2rem;
+    }
+}
+
+@media (max-width: 560px) {
+    main {
+        padding: 0 1.25rem;
     }
 
     h1 {
         font-size: 2.25rem;
     }
 
-    h2 {
-        font-size: 1.5rem;
-    }
-
     #hero {
-        min-height: 80vh;
-    }
-
-    section {
-        margin-bottom: 5rem;
-    }
-
-    section p {
-        max-width: 100%;
+        min-height: 50vh;
     }
 
     .lab-grid {
         grid-template-columns: 1fr;
     }
 
-    .lab-card:first-child {
-        grid-column: auto;
-    }
-
     .lab-card {
         padding: 1.5rem;
     }
 
-    .work-entry p {
-        max-width: 100%;
-    }
-
-    footer {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+    section {
+        margin-bottom: 4rem;
     }
 
     .footer-content {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    body.scrolled #main-nav {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.8125rem;
     }
 }
